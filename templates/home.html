@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tennis Match Winner Prediction</title>
+    <script>
+        // JavaScript function to calculate implied probability
+        function calculateImpliedProbabilities() {
+            var player1Odds = document.getElementById('player1_odds').value;
+            var player2Odds = document.getElementById('player2_odds').value;
+
+            if (player1Odds) {
+                document.getElementById('player1_implied_prob').value = (1 / player1Odds).toFixed(4);
+            }
+
+            if (player2Odds) {
+                document.getElementById('player2_implied_prob').value = (1 / player2Odds).toFixed(4);
+            }
+        }
+    </script>
+</head>
+<body style="margin: 0; padding: 0; height: 100vh; background-image: url('static/images/tennis.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed; display: flex; justify-content: center; align-items: center; color: white; font-family: Arial, sans-serif;">
+
+    <div style="background-color: rgba(0, 0, 0, 0.6); padding: 20px; border-radius: 10px; max-width: 600px; width: 100%; text-align: center; overflow-y: auto; max-height: 90vh;">
+        <h1>Tennis Match Winner Prediction</h1>
+
+        <form action="/predict" method="POST">
+            
+
+            <div style="margin-bottom: 15px;">
+                <label for="player1_int">Player 1 Name:</label>
+                <input type="text" id="player1_name" name="player1_name" step="any" required style="width: 100%; padding: 8px; border-radius: 5px; border: none;">
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <label for="player2_int">Player 2 Name:</label>
+                <input type="text" id="player2_name" name="player2_name" step="any" required style="width: 100%; padding: 8px; border-radius: 5px; border: none;">
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <label for="player1_rank">Player 1 Rank:</label>
+                <input type="number" id="player1_rank" name="player1_rank" min="1" required style="width: 100%; padding: 8px; border-radius: 5px; border: none;">
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <label for="player2_rank">Player 2 Rank:</label>
+                <input type="number" id="player2_rank" name="player2_rank" min="1" required style="width: 100%; padding: 8px; border-radius: 5px; border: none;">
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <label for="player1_odds">Player 1 Odds:</label>
+                <input type="number" id="player1_odds" name="player1_odds" min="1" step="any" required style="width: 100%; padding: 8px; border-radius: 5px; border: none;" oninput="calculateImpliedProbabilities()">
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <label for="player2_odds">Player 2 Odds:</label>
+                <input type="number" id="player2_odds" name="player2_odds" min="1" step="any" required style="width: 100%; padding: 8px; border-radius: 5px; border: none;" oninput="calculateImpliedProbabilities()">
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <label for="player1_implied_prob">Player 1 Implied Probability:</label>
+                <input type="text" id="player1_implied_prob" name="player1_implied_prob" readonly style="width: 100%; padding: 8px; border-radius: 5px; border: none; background-color: lightgray;">
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <label for="player2_implied_prob">Player 2 Implied Probability:</label>
+                <input type="text" id="player2_implied_prob" name="player2_implied_prob" readonly style="width: 100%; padding: 8px; border-radius: 5px; border: none; background-color: lightgray;">
+            </div>
+
+            <input type="submit" value="Predict Winner" style="width: 100%; padding: 10px; border-radius: 5px; border: none; background-color: #4CAF50; color: white; font-size: 16px; cursor: pointer;">
+        </form>
+    </div>
+
+</body>
+</html>
